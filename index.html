@@ -1,319 +1,179 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" class="next-head next-head">
-  <meta name="viewport" content=
-  "width=device-width, initial-scale=1" class="next-head">
-  <title class="jsx-848490863 next-head">Ali Ukani</title>
-  <link rel="preload" href=
-  "/_next/d97a58f4-4d09-4849-aa40-7c91895dea2d/page/index.js" as=
-  "script">
-  <link rel="preload" href=
-  "/_next/d97a58f4-4d09-4849-aa40-7c91895dea2d/page/_app.js" as=
-  "script">
-  <link rel="preload" href=
-  "/_next/d97a58f4-4d09-4849-aa40-7c91895dea2d/page/_error.js" as=
-  "script">
-  <link rel="preload" href=
-  "/_next/static/commons/main-49c09d1875fe3e18f990.js" as="script">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>فضفضة بهوية مجهولة</title>
   <!-- إضافة Font Awesome للأيقونات -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style id="__jsx-986016075">
-  *{margin:0;box-sizing:border-box;}
-  body{font-size:16px;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI","Roboto","Helvetica Neue",Arial,sans-serif;color:#333;}
-  a{position:relative;color:#009fd4;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-text-decoration:none;text-decoration:none;}
-  a:hover{color:#fff;background-color:#009fd4;}
-  a,p,ul,h1{line-height:1.5;margin-bottom:1.25rem;}
-  .social-icons {
-    display: flex;
-    gap: 10px;
-    margin-top: 1rem;
-  }
-  .social-icons a {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    background-color: #009fd4;
-    color: #fff;
-    text-align: center;
-    line-height: 40px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  .social-icons a:hover {
-    background-color: #007ba3;
-  }
-  .background-options {
-    margin-top: 1rem;
-    display: flex;
-    gap: 10px;
-  }
-  .background-options button {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #009fd4;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  .background-options button:hover {
-    background-color: #007ba3;
-  }
-  .chat-container {
-    margin-top: 2rem;
-    max-width: 500px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 1rem;
-    background-color: #f9f9f9;
-  }
-  .chat-box {
-    height: 300px;
-    overflow-y: auto;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px;
-    background-color: #fff;
-    margin-bottom: 10px;
-  }
-  .chat-input {
-    display: flex;
-    gap: 10px;
-  }
-  .chat-input input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  .chat-input button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #009fd4;
-    color: #fff;
-    cursor: pointer;
-  }
-  .chat-input button:hover {
-    background-color: #007ba3;
-  }
-  .message {
-    margin-bottom: 10px;
-  }
-  .message.user {
-    text-align: right;
-    color: #009fd4;
-  }
-  .message.bot {
-    text-align: left;
-    color: #333;
-  }
-  .loading {
-    text-align: center;
-    color: #888;
-    font-style: italic;
-  }
-  .message img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin-top: 5px;
-  }
-  .message a {
-    color: #009fd4;
-    text-decoration: none;
-  }
-  .message a:hover {
-    text-decoration: underline;
-  }
-  </style>
-  <style id="__jsx-235041286">
-  .HeaderBranding.jsx-235041286{display:inline-block;text-transform:lowercase;margin-bottom:1rem;}
-  </style>
-  <style id="__jsx-3751890534">
-  .P.jsx-3751890534{line-height:1.6;}
-  </style>
-  <style id="__jsx-966318957">
-  .Links.jsx-966318957{list-style-type:none;margin:0;padding:0;line-height:1.6;}
-  </style>
-  <style id="__jsx-1087313030">
-  .Footer.jsx-1087313030{font-size:0.875rem;}
-  </style>
-  <style id="__jsx-848490863">
-  *{text-transform:lowercase;}
-  </style>
-  <style id="__jsx-842026395">
-  .Page.jsx-842026395{max-width:680px;margin:2rem;}
+  <style>
+    * {
+      margin: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-size: 16px;
+      font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+      color: #333;
+      background-color: #f5f5f5;
+    }
+    a {
+      color: #009fd4;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      max-width: 680px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #009fd4;
+    }
+    .chat-container {
+      margin-top: 1rem;
+    }
+    .chat-box {
+      height: 300px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      margin-bottom: 10px;
+    }
+    .chat-input {
+      display: flex;
+      gap: 10px;
+    }
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .chat-input button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #009fd4;
+      color: #fff;
+      cursor: pointer;
+    }
+    .chat-input button:hover {
+      background-color: #007ba3;
+    }
+    .message {
+      margin-bottom: 10px;
+    }
+    .message.user {
+      text-align: right;
+      color: #009fd4;
+    }
+    .message.bot {
+      text-align: left;
+      color: #333;
+    }
+    .message img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+      margin-top: 5px;
+    }
+    .message a {
+      color: #009fd4;
+      text-decoration: none;
+    }
+    .message a:hover {
+      text-decoration: underline;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.875rem;
+      color: #777;
+    }
   </style>
 </head>
 <body>
-  <div id="__next">
-    <div class="jsx-842026395 Page">
-      <header class="jsx-235041286">
-        <h1 class="jsx-235041286 HeaderBranding">فضفضة بهوية مجهولة</h1>
-        <!-- إضافة مربعات التواصل الاجتماعي -->
-        <div class="social-icons">
-          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-youtube"></i>
-          </a>
-          <a href="https://telegram.org" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-telegram"></i>
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-tiktok"></i>
-          </a>
-        </div>
-        <!-- إضافة خيارات الخلفية المتحركة -->
-        <div class="background-options">
-          <button onclick="changeBackground('gradient1')">خلفية 1</button>
-          <button onclick="changeBackground('gradient2')">خلفية 2</button>
-          <button onclick="changeBackground('gradient3')">خلفية 3</button>
-        </div>
-      </header>
-      <!-- إضافة قسم الدردشة المباشرة -->
-      <div class="chat-container">
-        <div class="chat-box" id="chat-box">
-          <!-- الرسائل ستظهر هنا -->
-        </div>
-        <div class="chat-input">
-          <input type="text" id="chat-input" placeholder="اكتب رسالتك هنا..." onkeypress="handleKeyPress(event)">
-          <input type="file" id="file-input" accept="image/*, .pdf, .doc, .docx" style="display: none;">
-          <button onclick="document.getElementById('file-input').click()">إرسال ملف</button>
-          <button onclick="sendMessage()">إرسال</button>
-        </div>
+  <div class="container">
+    <h1>فضفضة بهوية مجهولة</h1>
+    <!-- قسم الدردشة المباشرة -->
+    <div class="chat-container">
+      <div class="chat-box" id="chat-box">
+        <!-- الرسائل ستظهر هنا -->
       </div>
-      <footer class="jsx-1087313030 Footer">
-        <ul class="jsx-966318957 Links">
-          <!-- تمت إزالة جميع الروابط -->
-        </ul>
-      </footer>
+      <div class="chat-input">
+        <input type="text" id="chat-input" placeholder="اكتب رسالتك هنا..." onkeypress="handleKeyPress(event)">
+        <input type="file" id="file-input" accept="image/*, .pdf, .doc, .docx" style="display: none;">
+        <button onclick="document.getElementById('file-input').click()">إرسال ملف</button>
+        <button onclick="sendMessage()">إرسال</button>
+      </div>
+    </div>
+    <!-- تذييل الصفحة -->
+    <div class="footer">
+      <p>فضفضة بهوية مجهولة - مكان آمن للبوح بما بداخلك.</p>
     </div>
   </div>
-  <div id="__next-error"></div>
+
   <script>
-          __NEXT_DATA__ = {"props":{"pageProps":{}},"page":"/","pathname":"/","query":{},"buildId":"d97a58f4-4d09-4849-aa40-7c91895dea2d","assetPrefix":"","nextExport":true,"err":null,"chunks":[]}
-          module={}
-          __NEXT_LOADED_PAGES__ = []
-          __NEXT_LOADED_CHUNKS__ = []
+    // دالة لإرسال الرسائل
+    function sendMessage() {
+      const input = document.getElementById('chat-input');
+      const chatBox = document.getElementById('chat-box');
+      const userMessage = input.value.trim();
 
-          __NEXT_REGISTER_PAGE = function (route, fn) {
-            __NEXT_LOADED_PAGES__.push({ route: route, fn: fn })
+      if (userMessage === "") return;
+
+      // عرض رسالة المستخدم
+      chatBox.innerHTML += `<div class="message user">أنت: ${userMessage}</div>`;
+      input.value = "";
+
+      // التمرير إلى الأسفل لعرض الرسالة الجديدة
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // دالة لإرسال الوسائط
+    function sendMedia() {
+      const fileInput = document.getElementById('file-input');
+      const chatBox = document.getElementById('chat-box');
+
+      if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          if (file.type.startsWith('image/')) {
+            // إذا كان الملف صورة
+            chatBox.innerHTML += `<div class="message user">أنت: <img src="${e.target.result}" alt="صورة" style="max-width: 100%; height: auto; border-radius: 5px;"></div>`;
+          } else {
+            // إذا كان الملف غير صورة (مثل PDF أو مستند)
+            chatBox.innerHTML += `<div class="message user">أنت: <a href="${e.target.result}" download="${file.name}">${file.name}</a></div>`;
           }
+          chatBox.scrollTop = chatBox.scrollHeight; // التمرير إلى الأسفل
+        };
 
-          __NEXT_REGISTER_CHUNK = function (chunkName, fn) {
-            __NEXT_LOADED_CHUNKS__.push({ chunkName: chunkName, fn: fn })
-          }
+        reader.readAsDataURL(file); // قراءة الملف كـ Data URL
+        fileInput.value = ''; // مسح حقل الإدخال بعد الإرسال
+      }
+    }
 
-          // دالة لتغيير الخلفية
-          function changeBackground(backgroundType) {
-            const body = document.body;
-            body.className = ''; // إزالة أي كلاسات موجودة
-            body.classList.add(backgroundType); // إضافة الكلاس الجديد
-          }
+    // تعديل زر إرسال الملف لاستدعاء sendMedia
+    document.getElementById('file-input').addEventListener('change', sendMedia);
 
-          // تشغيل الرسالة الصوتية عند تحميل الصفحة
-          window.onload = function() {
-            const audio = new Audio('https://drive.google.com/uc?export=download&id=YOUR_FILE_ID'); // استبدل YOUR_FILE_ID بمعرف ملفك
-            audio.play();
-          };
-
-          // دالة لإرسال الرسائل
-          function sendMessage() {
-            const input = document.getElementById('chat-input');
-            const chatBox = document.getElementById('chat-box');
-            const userMessage = input.value.trim();
-
-            if (userMessage === "") return;
-
-            // عرض رسالة المستخدم
-            chatBox.innerHTML += `<div class="message user">أنت: ${userMessage}</div>`;
-            input.value = "";
-
-            // التمرير إلى الأسفل لعرض الرسالة الجديدة
-            chatBox.scrollTop = chatBox.scrollHeight;
-          }
-
-          // دالة لإرسال الوسائط
-          function sendMedia() {
-            const fileInput = document.getElementById('file-input');
-            const chatBox = document.getElementById('chat-box');
-
-            if (fileInput.files.length > 0) {
-              const file = fileInput.files[0];
-              const reader = new FileReader();
-
-              reader.onload = function (e) {
-                if (file.type.startsWith('image/')) {
-                  // إذا كان الملف صورة
-                  chatBox.innerHTML += `<div class="message user">أنت: <img src="${e.target.result}" alt="صورة" style="max-width: 100%; height: auto; border-radius: 5px;"></div>`;
-                } else {
-                  // إذا كان الملف غير صورة (مثل PDF أو مستند)
-                  chatBox.innerHTML += `<div class="message user">أنت: <a href="${e.target.result}" download="${file.name}">${file.name}</a></div>`;
-                }
-                chatBox.scrollTop = chatBox.scrollHeight; // التمرير إلى الأسفل
-              };
-
-              reader.readAsDataURL(file); // قراءة الملف كـ Data URL
-              fileInput.value = ''; // مسح حقل الإدخال بعد الإرسال
-            }
-          }
-
-          // تعديل زر إرسال الملف لاستدعاء sendMedia
-          document.getElementById('file-input').addEventListener('change', sendMedia);
-
-          // دالة للتعامل مع الضغط على Enter
-          function handleKeyPress(event) {
-            if (event.key === 'Enter') {
-              sendMessage();
-            }
-          }
-
-          false
+    // دالة للتعامل مع الضغط على Enter
+    function handleKeyPress(event) {
+      if (event.key === 'Enter') {
+        sendMessage();
+      }
+    }
   </script>
-  <style>
-    /* تعريف الخلفيات المتحركة */
-    .gradient1 {
-      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-      animation: gradientAnimation1 10s ease infinite;
-    }
-    .gradient2 {
-      background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
-      animation: gradientAnimation2 10s ease infinite;
-    }
-    .gradient3 {
-      background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
-      animation: gradientAnimation3 10s ease infinite;
-    }
-
-    @keyframes gradientAnimation1 {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @keyframes gradientAnimation2 {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @keyframes gradientAnimation3 {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-  </style>
-  <script async id="__NEXT_PAGE__/" src=
-  "/_next/d97a58f4-4d09-4849-aa40-7c91895dea2d/page/index.js"></script>
-  <script async id="__NEXT_PAGE__/_app" src=
-  "/_next/d97a58f4-4d09-4849-aa40-7c91895dea2d/page/_app.js"></script>
-  <script async id="__NEXT_PAGE__/_error" src=
-  "/_next/d97a58f4-4d09-4849-aa40-7c91895dea2d/page/_error.js"></script>
-  <script src="/_next/static/commons/main-49c09d1875fe3e18f990.js"
-  async></script>
 </body>
 </html>
