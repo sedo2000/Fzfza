@@ -6,6 +6,11 @@
   <title>فضفضة بهوية مجهولة</title>
   <!-- إضافة Font Awesome للأيقونات -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- إضافة Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js"></script>
   <style>
     * {
       margin: 0;
@@ -72,6 +77,10 @@
     }
     .message {
       margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #fff;
+      border: 1px solid #ddd;
     }
     .message.user {
       text-align: right;
@@ -94,6 +103,21 @@
     .message a:hover {
       text-decoration: underline;
     }
+    .message-actions {
+      display: flex;
+      gap: 5px;
+      margin-top: 5px;
+    }
+    .message-actions button {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 3px;
+      background-color: #f0f0f0;
+      cursor: pointer;
+    }
+    .message-actions button:hover {
+      background-color: #ddd;
+    }
     .footer {
       text-align: center;
       margin-top: 2rem;
@@ -112,7 +136,7 @@
       </div>
       <div class="chat-input">
         <input type="text" id="chat-input" placeholder="اكتب رسالتك هنا..." onkeypress="handleKeyPress(event)">
-        <input type="file" id="file-input" accept="image/*, .pdf, .doc, .docx" style="display: none;">
+        <input type="file" id="file-input" style="display: none;" accept="image/*, .pdf, .doc, .docx">
         <button onclick="document.getElementById('file-input').click()">إرسال ملف</button>
         <button onclick="sendMessage()">إرسال</button>
       </div>
@@ -124,49 +148,130 @@
   </div>
 
   <script>
+    // تهيئة Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyCk8evg05tIhSXTj1eKz8DhL9fxXQPWyOk", // استبدل بapiKey الخاص بك
+      authDomain: "fzfza-533dd.firebaseapp.com", // استبدل بauthDomain الخاص بك
+      databaseURL: "https://fzfza-533dd.firebaseio.com", // استبدل بdatabaseURL الخاص بك
+      projectId: "fzfza-533dd", // استبدل بprojectId الخاص بك
+      storageBucket: "fzfza-533dd.appspot.com", // استبدل بstorageBucket الخاص بك
+      messagingSenderId: "507105268607", // استبدل بmessagingSenderId الخاص بك
+      appId: "1:507105268607:ios:ffe1b68e8e209397a4004a" // استبدل بappId الخاص بك
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+    const auth = firebase.auth();
+    const storage = firebase.storage();
+
+    // تسجيل الدخول المجهول
+    auth.signInAnonymously().catch((error) => {
+      console.error("خطأ في تسجيل الدخول المجهول:", error);
+    });
+
     // دالة لإرسال الرسائل
     function sendMessage() {
       const input = document.getElementById('chat-input');
-      const chatBox = document.getElementById('chat-box');
       const userMessage = input.value.trim();
 
       if (userMessage === "") return;
 
-      // عرض رسالة المستخدم
-      chatBox.innerHTML += `<div class="message user">أنت: ${userMessage}</div>`;
-      input.value = "";
+      // إرسال الرسالة إلى Firebase
+      database.ref('messages').push({
+        text: userMessage,
+        timestamp: firebase.database.ServerValue.TIMESTAMP,
+        userId: auth.currentUser.uid
+      });
 
-      // التمرير إلى الأسفل لعرض الرسالة الجديدة
-      chatBox.scrollTop = chatBox.scrollHeight;
+      input.value = "";
     }
 
     // دالة لإرسال الوسائط
     function sendMedia() {
       const fileInput = document.getElementById('file-input');
-      const chatBox = document.getElementById('chat-box');
+      const file = fileInput.files[0];
 
-      if (fileInput.files.length > 0) {
-        const file = fileInput.files[0];
-        const reader = new FileReader();
+      if (file) {
+        const storageRef = storage.ref(`media/${file.name}`);
+        const uploadTask = storageRef.put(file);
 
-        reader.onload = function (e) {
-          if (file.type.startsWith('image/')) {
-            // إذا كان الملف صورة
-            chatBox.innerHTML += `<div class="message user">أنت: <img src="${e.target.result}" alt="صورة" style="max-width: 100%; height: auto; border-radius: 5px;"></div>`;
-          } else {
-            // إذا كان الملف غير صورة (مثل PDF أو مستند)
-            chatBox.innerHTML += `<div class="message user">أنت: <a href="${e.target.result}" download="${file.name}">${file.name}</a></div>`;
+        uploadTask.on('state_changed', 
+          (snapshot) => {
+            // يمكنك إضافة شريط تقدم هنا إذا أردت
+          }, 
+          (error) => {
+            console.error("خطأ في تحميل الملف:", error);
+          }, 
+          () => {
+            uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+              database.ref('messages').push({
+                media: downloadURL,
+                timestamp: firebase.database.ServerValue.TIMESTAMP,
+                userId: auth.currentUser.uid
+              });
+            });
           }
-          chatBox.scrollTop = chatBox.scrollHeight; // التمرير إلى الأسفل
-        };
-
-        reader.readAsDataURL(file); // قراءة الملف كـ Data URL
-        fileInput.value = ''; // مسح حقل الإدخال بعد الإرسال
+        );
       }
     }
 
-    // تعديل زر إرسال الملف لاستدعاء sendMedia
-    document.getElementById('file-input').addEventListener('change', sendMedia);
+    // دالة لجلب الرسائل وعرضها
+    function loadMessages() {
+      const chatBox = document.getElementById('chat-box');
+      database.ref('messages').on('value', (snapshot) => {
+        chatBox.innerHTML = ""; // مسح الرسائل القديمة
+        snapshot.forEach((childSnapshot) => {
+          const message = childSnapshot.val();
+          const messageElement = document.createElement('div');
+          messageElement.className = `message ${message.userId === auth.currentUser.uid ? 'user' : 'bot'}`;
+
+          if (message.text) {
+            messageElement.innerHTML = `${message.text}`;
+          } else if (message.media) {
+            if (message.media.includes('image')) {
+              messageElement.innerHTML = `<img src="${message.media}" alt="صورة">`;
+            } else {
+              messageElement.innerHTML = `<a href="${message.media}" download>${message.media.split('/').pop()}</a>`;
+            }
+          }
+
+          // إضافة أزرار الحذف والإبلاغ
+          const actions = document.createElement('div');
+          actions.className = 'message-actions';
+          if (message.userId === auth.currentUser.uid) {
+            actions.innerHTML = `
+              <button onclick="deleteMessage('${childSnapshot.key}')">حذف</button>
+            `;
+          } else {
+            actions.innerHTML = `
+              <button onclick="reportMessage('${childSnapshot.key}')">إبلاغ</button>
+            `;
+          }
+          messageElement.appendChild(actions);
+          chatBox.appendChild(messageElement);
+        });
+        // التمرير إلى الأسفل لعرض الرسالة الجديدة
+        chatBox.scrollTop = chatBox.scrollHeight;
+      });
+    }
+
+    // دالة لحذف الرسائل
+    function deleteMessage(messageId) {
+      database.ref('messages').child(messageId).remove();
+    }
+
+    // دالة للإبلاغ عن الرسائل
+    function reportMessage(messageId) {
+      database.ref('reportedMessages').push({
+        messageId: messageId,
+        timestamp: firebase.database.ServerValue.TIMESTAMP
+      });
+      alert("تم الإبلاغ عن الرسالة.");
+    }
+
+    // تحميل الرسائل عند فتح الصفحة
+    loadMessages();
 
     // دالة للتعامل مع الضغط على Enter
     function handleKeyPress(event) {
@@ -174,6 +279,9 @@
         sendMessage();
       }
     }
+
+    // تعديل زر إرسال الملف لاستدعاء sendMedia
+    document.getElementById('file-input').addEventListener('change', sendMedia);
   </script>
 </body>
 </html>
